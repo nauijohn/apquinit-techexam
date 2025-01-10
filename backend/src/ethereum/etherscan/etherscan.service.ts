@@ -13,8 +13,9 @@ export class EtherscanService {
     private readonly httpService: HttpService,
   ) {}
 
-  async getCurrentBlock(walletAddress: string) {
-    this.loggerService.verbose('getCurrentBlock...');
+  async getBalanceByWalletAddress(walletAddress: string) {
+    this.loggerService.verbose('getBalanceByWalletAddress...');
+
     const { data } = await firstValueFrom(
       this.httpService
         .get<{
@@ -22,7 +23,7 @@ export class EtherscanService {
           message: string;
           result: string;
         }>(
-          `${process.env.ETHERSCAN_BASE_URL}?module=proxy&action=eth_blockNumber&address=${walletAddress}&apikey=${process.env.ETHERSCAN_API_KEY}`,
+          `${process.env.ETHERSCAN_BASE_URL}?module=account&action=balance&address=${walletAddress}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`,
         )
         .pipe(
           catchError((error: AxiosError) => {
@@ -34,8 +35,9 @@ export class EtherscanService {
     return data;
   }
 
-  async getCurrentBlock2() {
-    this.loggerService.verbose('getCurrentBlock...');
+  async getCurrentBlockNumber() {
+    this.loggerService.verbose('getCurrentBlockNumber...');
+
     const { data } = await firstValueFrom(
       this.httpService
         .get<{
@@ -43,7 +45,7 @@ export class EtherscanService {
           message: string;
           result: string;
         }>(
-          `${process.env.ETHERSCAN_BASE_URL}?module=proxy&action=eth_getBlockByNumber&tag=latest&boolean=true&apikey=${process.env.ETHERSCAN_API_KEY}`,
+          `${process.env.ETHERSCAN_BASE_URL}?module=proxy&action=eth_blockNumber&apikey=${process.env.ETHERSCAN_API_KEY}`,
         )
         .pipe(
           catchError((error: AxiosError) => {
@@ -55,10 +57,9 @@ export class EtherscanService {
     return data;
   }
 
-  async getBlock(blockNumber: string) {
-    this.loggerService.verbose('getCurrentBlock...');
-    console.log('blockNumber: ', blockNumber);
-    const timestamp = Math.floor(new Date('2012.08.10').getTime() / 1000);
+  async getGasPrice() {
+    this.loggerService.verbose('getGasPrice...');
+
     const { data } = await firstValueFrom(
       this.httpService
         .get<{
@@ -66,7 +67,7 @@ export class EtherscanService {
           message: string;
           result: string;
         }>(
-          `${process.env.ETHERSCAN_BASE_URL}?module=block&action=getblocknobytime&timestamp=${timestamp}&closest=after&apikey=${process.env.ETHERSCAN_API_KEY}`,
+          `${process.env.ETHERSCAN_BASE_URL}?module=proxy&action=eth_gasPrice&apikey=${process.env.ETHERSCAN_API_KEY}`,
         )
         .pipe(
           catchError((error: AxiosError) => {

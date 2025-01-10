@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "41199cbc-4b58-45bb-84da-89da8e4b3a2c",
+		"name": "Apquinit Technical Exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12565920"
+	},
+	"item": [
+		{
+			"name": "Balances",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/balances/:walletAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"balances",
+								":walletAddress"
+							],
+							"variable": [
+								{
+									"key": "walletAddress",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\": 2000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}//balances/:walletAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"",
+								"balances",
+								":walletAddress"
+							],
+							"variable": [
+								{
+									"key": "walletAddress",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/balances/:walletAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"balances",
+								":walletAddress"
+							],
+							"variable": [
+								{
+									"key": "walletAddress",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/balances/:walletAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"balances",
+								":walletAddress"
+							],
+							"variable": [
+								{
+									"key": "walletAddress",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ethereum",
+			"item": [
+				{
+					"name": "Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ethereum/etherscan/:walletAddress/balance",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ethereum",
+								"etherscan",
+								":walletAddress",
+								"balance"
+							],
+							"variable": [
+								{
+									"key": "walletAddress",
+									"value": "0xdee72ddA03778A432a188398b4C283593cf5F90b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ethereum/etherscan/block-number",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ethereum",
+								"etherscan",
+								"block-number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gas Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ethereum/etherscan/gas-price",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ethereum",
+								"etherscan",
+								"gas-price"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

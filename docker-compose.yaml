@@ -1,0 +1,55 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/app
+    command: npm run start:dev
+    environment:
+      - NODE_ENV=development
+      - ETHERSCAN_BASE_URL=https://api.etherscan.io/api
+      - ETHERSCAN_API_KEY=K5TAGYEJVIJIFY77F1K9FU6BPDHPS81W5P
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - DB_NAME=app_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_TTL=5000
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - '5173:5173'
+    environment:
+      - VITE_API_BASE_URL='http://backend:3000/api/v1'
+    depends_on:
+      - backend
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379' # Expose Redis on the default port
+    volumes:
+      - redis-data:/data # Persist Redis data
+
+volumes:
+  redis-data:
+  db_data:
