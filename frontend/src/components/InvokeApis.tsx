@@ -7,14 +7,9 @@ import { WalletAddressContext } from '../store/WalletAddressContextProvider';
 import Button from './ui/Button';
 
 async function fetchCurrentGasPrice(resource: string) {
-  console.log(
-    '`${process.env.VITE_API_BASE_URL}/ethereum/${resource}/gas-price`: ',
-    `${process.env.VITE_API_BASE_URL}/ethereum/${resource}/gas-price`,
-  );
   const response = await axios.get(
     `${process.env.VITE_API_BASE_URL}/ethereum/${resource}/gas-price`,
   );
-  console.log('response: ', response);
   return response;
 }
 
